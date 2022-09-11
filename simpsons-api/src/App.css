@@ -1,0 +1,17 @@
+.character {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-areas: "left middle right";
+  padding: 10px;
+}
+
+.left {
+  grid-area: middle;
+}
+
+.quote {
+  padding: 0px 10px;
+}
+img {
+  width: 80px;
+}
