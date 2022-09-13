@@ -17,9 +17,16 @@ class App extends Component {
       });
 
       this.setState({ apiData: apiData.data });
+
+      this.searchBox.current.focus();
     } catch (error) {
       console.log("Error with API data");
     }
+  }
+
+  constructor() {
+    super();
+    this.searchBox = React.createRef();
   }
 
   onLike = (id) => {
@@ -72,6 +79,7 @@ class App extends Component {
           onInput={(e) => this.onInput(e.target.value)}
           type="text"
           placeholder="Search for a character"
+          ref={this.searchBox}
         />
         {filtered.map((character) => (
           <Character
