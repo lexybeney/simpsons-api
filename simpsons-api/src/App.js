@@ -75,12 +75,14 @@ class App extends Component {
 
     return (
       <>
-        <input
-          onInput={(e) => this.onInput(e.target.value)}
-          type="text"
-          placeholder="Search for a character"
-          ref={this.searchBox}
-        />
+        <div className="search">
+          <input
+            onInput={(e) => this.onInput(e.target.value)}
+            type="text"
+            placeholder="Search for a character"
+            ref={this.searchBox}
+          />
+        </div>
         {filtered.map((character) => (
           <Character
             key={character.id}

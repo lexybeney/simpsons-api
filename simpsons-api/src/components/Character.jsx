@@ -3,6 +3,7 @@ import Name from "./Name";
 import Quote from "./Quote";
 import Image from "./Image";
 import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton";
 
 class Character extends Component {
   render() {
@@ -13,16 +14,18 @@ class Character extends Component {
 
     return (
       <div className="character">
-        <Name name={character} />
-        <Quote quote={quote} />
-        <Image
-          image={image}
-          alt={character}
-          characterDirection={characterDirection}
-        />
-        <div>
+        <div className="grid">
+          <Name name={character} />
+          <Quote quote={quote} />
+          <Image
+            image={image}
+            alt={character}
+            characterDirection={characterDirection}
+          />
+        </div>
+        <div className="buttons">
           <LikeButton liked={liked} onLike={onLike} id={id} />
-          <button onClick={() => onDelete(id)}>Delete</button>
+          <DeleteButton onDelete={onDelete} id={id} />
         </div>
       </div>
     );
