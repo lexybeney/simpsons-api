@@ -3,10 +3,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import Character from "./components/Character";
 import "./App.css";
+import likedIcon from "./assets/liked.svg";
 
 class App extends Component {
   state = {};
   async componentDidMount() {
+    this.setState({ likeCount: 0 });
+
     try {
       const apiData = await axios.get(
         "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
@@ -17,10 +20,9 @@ class App extends Component {
       });
 
       this.setState({ apiData: apiData.data });
-
-      this.searchBox.current.focus();
     } catch (error) {
       console.log("Error with API data");
+      console.log(error);
     }
   }
 
@@ -35,10 +37,15 @@ class App extends Component {
     });
 
     const apiData = [...this.state.apiData];
+
     if (apiData[index].liked === true) {
       apiData[index].liked = false;
+      const likeCountDecrease = this.state.likeCount - 1;
+      this.setState({ likeCount: likeCountDecrease });
     } else {
       apiData[index].liked = true;
+      const likeCountIncrease = this.state.likeCount + 1;
+      this.setState({ likeCount: likeCountIncrease });
     }
 
     this.setState({ apiData });
@@ -60,7 +67,7 @@ class App extends Component {
   };
 
   render() {
-    const { apiData, searchQuery } = this.state;
+    const { apiData, searchQuery, likeCount } = this.state;
 
     if (!apiData) return <h1>Loading...</h1>;
     let filtered = apiData;
@@ -75,22 +82,30 @@ class App extends Component {
 
     return (
       <>
-        <div className="search">
-          <input
-            onInput={(e) => this.onInput(e.target.value)}
-            type="text"
-            placeholder="Search for a character"
-            ref={this.searchBox}
-          />
+        <div className="searchArea">
+          <div className="search">
+            <input
+              onInput={(e) => this.onInput(e.target.value)}
+              type="text"
+              placeholder="Search for a character"
+              ref={this.searchBox}
+            />
+          </div>
+          <div className="likeCount">
+            <img className="likedIcon" alt="Like Count" src={likedIcon} />
+            <p>{likeCount}</p>
+          </div>
         </div>
-        {filtered.map((character) => (
-          <Character
-            key={character.id}
-            character={character}
-            onDelete={this.onDelete}
-            onLike={this.onLike}
-          />
-        ))}
+        <div className="characters">
+          {filtered.map((character) => (
+            <Character
+              key={character.id}
+              character={character}
+              onDelete={this.onDelete}
+              onLike={this.onLike}
+            />
+          ))}
+        </div>
       </>
     );
   }
