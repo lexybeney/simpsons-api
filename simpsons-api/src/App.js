@@ -37,15 +37,15 @@ class App extends Component {
     });
 
     const apiData = [...this.state.apiData];
+    const likeCount = this.state.likeCount;
 
     if (apiData[index].liked === true) {
       apiData[index].liked = false;
-      const likeCountDecrease = this.state.likeCount - 1;
-      this.setState({ likeCount: likeCountDecrease });
+      this.setState({ likeCount: likeCount - 1 });
     } else {
       apiData[index].liked = true;
-      const likeCountIncrease = this.state.likeCount + 1;
-      this.setState({ likeCount: likeCountIncrease });
+
+      this.setState({ likeCount: likeCount + 1 });
     }
 
     this.setState({ apiData });
@@ -55,6 +55,11 @@ class App extends Component {
     const index = this.state.apiData.findIndex((item) => {
       return item.id === id;
     });
+
+    const likeCount = this.state.likeCount;
+    if (this.state.apiData[index].liked === true) {
+      this.setState({ likeCount: likeCount - 1 });
+    }
 
     const apiData = [...this.state.apiData];
     apiData.splice(index, 1);
