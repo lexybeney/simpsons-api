@@ -4,6 +4,7 @@ import axios from "axios";
 import Character from "./components/Character";
 import "./App.css";
 import likedIcon from "./assets/liked.svg";
+import simpLogo from "./assets/simpsons_logo.svg";
 
 class App extends Component {
   state = {};
@@ -11,15 +12,16 @@ class App extends Component {
     this.setState({ likeCount: 0 });
 
     try {
-      const apiData = await axios.get(
-        "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
-      );
+      this.setState({ apiData: false });
+      // const apiData = await axios.get(
+      //   "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
+      // );
 
-      apiData.data.forEach((element, index) => {
-        element.id = index;
-      });
+      // apiData.data.forEach((element, index) => {
+      //   element.id = index;
+      // });
 
-      this.setState({ apiData: apiData.data });
+      // this.setState({ apiData: apiData.data });
     } catch (error) {
       console.log("Error with API data");
       console.log(error);
@@ -74,7 +76,19 @@ class App extends Component {
   render() {
     const { apiData, searchQuery, likeCount } = this.state;
 
-    if (!apiData) return <h1>Loading...</h1>;
+    if (!apiData)
+      return (
+        <div className="loading">
+          <img className="simpLogo" alt="The Simpsons Logo" src={simpLogo} />
+          <h2>Loading...</h2>
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      );
     let filtered = apiData;
 
     if (searchQuery) {
@@ -98,7 +112,7 @@ class App extends Component {
           </div>
           <div className="likeCount">
             <img className="likedIcon" alt="Like Count" src={likedIcon} />
-            <p>{likeCount}</p>
+            <p className="likeCountNo">{likeCount}</p>
           </div>
         </div>
         <div className="characters">

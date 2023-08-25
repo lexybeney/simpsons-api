@@ -6,6 +6,84 @@ body {
   background-size: contain;
 }
 
+.loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.simpLogo {
+  width: 200px;
+}
+
+/* loading icon */
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fede00;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* end of loading icon */
+
+h2 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
 h1 {
   font-size: 1.3rem;
   font-family: "Permanent Marker", cursive;
@@ -34,6 +112,7 @@ input {
   width: 50vw;
   border-radius: 15px;
   padding: 5px 10px;
+  max-width: 250px;
 }
 
 input:focus {
@@ -43,6 +122,7 @@ input:focus {
 .likeCount {
   font-size: 1rem;
   display: flex;
+  align-items: center;
 }
 
 .likedIcon {
@@ -61,6 +141,7 @@ input:focus {
   border-radius: 10px;
   box-shadow: 5px 5px 5px orange;
   margin: 15px auto;
+  max-width: 800px;
 }
 
 .grid {
@@ -125,4 +206,80 @@ img {
 
 .delete:hover {
   background-image: url("./assets/deleteHover.svg");
+}
+
+@media (min-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .quote {
+    font-size: 1rem;
+  }
+
+  img {
+    width: 90px;
+  }
+
+  .likeCount {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 760px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .searchArea {
+    height: 90px;
+    justify-content: center;
+  }
+  input {
+    margin: 10px 0;
+  }
+
+  .likedIcon {
+    height: 25px;
+    margin-right: 5px;
+    margin-left: 20px;
+  }
+
+  .likeCountNo {
+    margin: 0px;
+  }
+
+  .characters {
+    margin-top: 100px;
+  }
+
+  .quote {
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 110px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .characters {
+    display: grid;
+    grid-template-areas: "left right";
+    grid-template-columns: 50% 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .character {
+    width: 80%;
+  }
+
+  .simpLogo {
+    width: 400px;
+  }
+
+  h2 {
+    font-size: 5rem;
+  }
 }
