@@ -12,16 +12,15 @@ class App extends Component {
     this.setState({ likeCount: 0 });
 
     try {
-      this.setState({ apiData: false });
-      // const apiData = await axios.get(
-      //   "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
-      // );
+      const apiData = await axios.get(
+        "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
+      );
 
-      // apiData.data.forEach((element, index) => {
-      //   element.id = index;
-      // });
+      apiData.data.forEach((element, index) => {
+        element.id = index;
+      });
 
-      // this.setState({ apiData: apiData.data });
+      this.setState({ apiData: apiData.data });
     } catch (error) {
       console.log("Error with API data");
       console.log(error);
