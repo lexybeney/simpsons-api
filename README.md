@@ -2,6 +2,10 @@
 
 This was my first project using React, specifically using class based components. The project was to get used to using and manipulating API data and using basic state to store a like count.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3cfde51b93fb288bf8c60336ae1474f2d4b25c77
 ## What I used
 
 - React ([Create React App](https://github.com/facebook/create-react-app))
